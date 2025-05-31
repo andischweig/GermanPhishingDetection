@@ -1,0 +1,92 @@
+services:
+  orchestrator:
+    build: ./orchestrator_module
+    restart: always
+    env_file: .env
+    volumes:
+      - ./processing_data:/app/processing_data
+      - ./huggingface_cache:/root/.cache/huggingface
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - phishing_analysis_net
+    depends_on:
+      - clamav_service
+      - ocr_service
+      - bert_service
+      - indicator_service
+      - llamacpp_server
+      - feedback_service
+
+  clamav_service:
+    image: clamav/clamav-debian:latest
+    container_name: clamav_instance
+    restart: always
+    volumes:
+      - clamav_db_volume:/var/lib/clamav
+      - ./processing_data:/scandir:ro
+    networks:
+      - phishing_analysis_net
+
+  ocr_service:
+    build: ./ocr_module
+    restart: always
+    networks:
+      - phishing_analysis_net
+
+  bert_service:
+    build: ./bert_module
+    restart: always
+    env_file: .env
+    volumes:
+      - ./huggingface_cache:/app/model_cache
+    networks:
+      - phishing_analysis_net
+
+  llamacpp_server:
+    image: ghcr.io/abetlen/llama-cpp-python:latest
+    platform: linux/arm64
+    restart: always
+    volumes:
+      - ./llm_models:/models:ro
+    environment:
+      - MODEL=/models/Nous-Hermes-2-Mistral-7B-DPO-Phishing-Tool.Q4_K_M.gguf
+      - N_CTX=4096
+      - N_GPU_LAYERS=0
+      - HOST=0.0.0.0
+      - PORT=8000
+    ports:
+      - "8003:8000"
+    networks:
+      - phishing_analysis_net
+    deploy:
+      resources:
+        reservations:
+          memory: "11G"
+
+  indicator_service:
+    build: ./indicator_module
+    restart: always
+    env_file: .env
+    networks:
+      - phishing_analysis_net
+    depends_on:
+      - llamacpp_server
+    ports:
+      - "8001:8000"
+
+  feedback_service:
+    build: ./feedback_module
+    restart: always
+    env_file: .env
+    networks:
+      - phishing_analysis_net
+    ports:
+      - "8002:8000"
+
+volumes:
+  clamav_db_volume:
+  huggingface_cache:
+
+networks:
+  phishing_analysis_net:
+    driver: bridge

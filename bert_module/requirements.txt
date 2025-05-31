@@ -1,0 +1,5 @@
+fastapi
+uvicorn[standard]
+python-dotenv
+transformers[torch] # Installiert PyTorch als Backend für Transformers
+sentencepiece # Oft von BERT-Tokenizern benötigt

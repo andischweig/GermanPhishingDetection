@@ -9,7 +9,7 @@ QR-Code-Dekodierung) sowie Anhänge und URLs. Diese Komponenten werden dann durc
 * **ClamAV**: Scannt Anhänge auf bekannte Malware.
 * **URLAnalyse**: Überprüft URLs gegen eine Datenbank bekannter bösartiger URLs.
 * **BERT-Modell**: Klassifiziert E-Mail-Texte (Body und OCR-Texte) als Phishing oder legitim (fine-tuned Modell:
-  `AndyAT/bert-finetuned-german-phishing`).
+  `[AndyAT/bert-finetuned-german-phishing](https://huggingface.co/collections/AndyAT/german-phishing-detection-682dd1442d6040a2d13aebbb)`).
 * **Indicator-Modell (GGUF)**: Extrahiert spezifische Phishing-Indikatoren aus verdächtigen Texten und liefert eine
   Gesamtklassifikation ausgeführt über einen `llama-cpp-python` Server).
 
@@ -40,8 +40,8 @@ zurückgemeldet.
 
 1. **Repository klonen:**
    ```bash
-   git clone [https://github.com/andischweig/PhishingAnalysisPrototype.git](https://github.com/andischweig/PhishingAnalysisPrototype.git) 
-   cd PhishingAnalysisPrototype
+   git clone [https://github.com/andischweig/GermanPhishingDetection.git](https://github.com/andischweig/GermanPhishingDetection.git) 
+   cd GermanPhishingDetection
    ```
 2. **Modell-Datei vorbereiten:**
     * Lade die GGUF-Datei vom Hugging Face Repository `<HF_PFAD>/<VERWENDETES_INDICATOR_MODELL>` herunter.

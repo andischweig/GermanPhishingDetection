@@ -11,12 +11,7 @@ SMTP_USER_FEEDBACK = os.getenv('SMTP_USER')
 SMTP_PASSWORD_FEEDBACK = os.getenv('SMTP_PASSWORD')
 
 DISCLAIMER_TEXT = """
-Wichtiger Hinweis: Diese Analyse wurde automatisiert erstellt und dient als erste Einschätzung. 
-Kein automatisiertes System ist perfekt. Überprüfen Sie E-Mails immer mit gesundem Menschenverstand, 
-besonders wenn Sie zur Eingabe von Daten oder zum Öffnen von Links/Anhängen aufgefordert werden. 
-Klicken Sie nicht auf verdächtige Links und geben Sie keine persönlichen Informationen preis, 
-wenn Sie sich unsicher sind. Wenden Sie sich im Zweifel direkt an den vermeintlichen Absender 
-über einen Ihnen bekannten, sicheren Kontaktweg (z.B. Telefon oder offizielle Webseite).
+Das bereitgestellte Analyse-Tool wurde ausschließlich zu Forschungs- und Testzwecken im Rahmen eines akademischen Projekts entwickelt. Es befindet sich im Prototyp-Stadium und ist nicht für den produktiven oder sicherheitskritischen Einsatz vorgesehen. Die vom Tool generierten Analyseergebnisse beruhen auf experimentellen Verfahren der künstlichen Intelligenz und maschinellen Klassifikation. Trotz sorgfältiger Entwicklung kann keine Garantie für die Richtigkeit, Vollständigkeit oder Sicherheit der Auswertungen übernommen werden. Der Betreiber und Entwickler dieses Systems übernimmt keinerlei Haftung für Schäden, gleich welcher Art, die direkt oder indirekt aus der Nutzung des Tools resultieren. Dies umfasst insbesondere Schäden durch falsch- negative Einschätzungen, Datenverlust, Systemkompromittierung oder finanzielle Verluste infolge von Fehlklassifikationen. Nutzer*innen verwenden das Tool auf eigenes Risiko und erkennen an, dass es sich um ein nicht validiertes, ausschließlich zu Forschungszwecken eingesetztes System handelt. Eine Verwendung außerhalb des akademischen Evaluationskontextes ist ausdrücklich untersagt.
 """
 
 
